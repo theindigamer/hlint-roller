@@ -1,0 +1,19 @@
+- package:
+    name: optparse-applicative
+    modules:
+    - import Options.Applicative
+
+- group:
+    name: optparse-applicative-group
+    enabled: true
+    imports:
+    - package optparse-applicative
+    rules:
+    - warn: {lhs: flag False True x, rhs: switch x, name: Use switch}
+    - warn: {lhs: (switch y) <|> z, rhs: switch y, name: switch never fails}
+    - warn:
+        { lhs: (x <$ switch y) <|> z
+        , rhs: flag' x y <|> z
+        , name: Use flag'
+        , note: "changes semantics (switch never fails), may create a type error"
+        }

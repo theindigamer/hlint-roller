@@ -1,0 +1,14 @@
+- package:
+    name: parser-combinators
+    modules:
+    - import Control.Applicative.Combinators
+    - import Control.Monad.Combinators
+
+- group:
+    name: parser-combinators-group
+    enabled: true
+    imports:
+    - package parser-combinators
+    rules:
+    - warn: {lhs: (Left <$> a) <|> (Right <$> b), rhs: eitherP a b, name: Use eitherP}
+    - hint: {lhs: p <|> (pure x), rhs: option x p, name: Use option}
