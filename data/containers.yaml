@@ -1,0 +1,32 @@
+- package:
+    name: containers
+    modules:
+    - import qualified Data.Foldable as F
+    - import qualified Data.Map as Map
+    - import qualified Data.Map.Strict as MapS
+    - import qualified Data.Set as Set
+
+- group:
+    name: containers-group
+    enabled: true
+    imports:
+    - package base
+    - package containers
+    rules:
+    - warn: {lhs: F.foldl' Map.union Map.empty, rhs: Map.unions, name: Use unions}
+    - warn: {lhs: Set.fromList (Map.keys m), rhs: Map.keysSet m, name: Use keysSet}
+    - warn: {lhs: fmap fst (Map.toList x), rhs: Map.keys x, name: Use keys}
+    - warn: {lhs: fst <$> Map.toList x, rhs: Map.keys x, name: Use keys}
+    - warn: {lhs: map fst (Map.toList x), rhs: Map.keys x, name: Use keys}
+    - warn: {lhs: fmap snd (Map.toList x), rhs: Map.elems x, name: Use elems}
+    - warn: {lhs: snd <$> Map.toList x, rhs: Map.elems x, name: Use elems}
+    - warn: {lhs: map snd (Map.toList x), rhs: Map.elems x, name: Use elems}
+
+    - warn: {lhs: F.foldl' MapS.union MapS.empty, rhs: MapS.unions, name: Use unions}
+    - warn: {lhs: Set.fromList (MapS.keys m), rhs: MapS.keysSet m, name: Use keysSet}
+    - warn: {lhs: fmap fst (MapS.toList x), rhs: MapS.keys x, name: Use keys}
+    - warn: {lhs: fst <$> MapS.toList x, rhs: MapS.keys x, name: Use keys}
+    - warn: {lhs: map fst (MapS.toList x), rhs: MapS.keys x, name: Use keys}
+    - warn: {lhs: fmap snd (MapS.toList x), rhs: MapS.elems x, name: Use elems}
+    - warn: {lhs: snd <$> MapS.toList x, rhs: MapS.elems x, name: Use elems}
+    - warn: {lhs: map snd (MapS.toList x), rhs: MapS.elems x, name: Use elems}
