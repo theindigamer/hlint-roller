@@ -30,3 +30,7 @@
     - warn: {lhs: fmap snd (MapS.toList x), rhs: MapS.elems x, name: Use elems}
     - warn: {lhs: snd <$> MapS.toList x, rhs: MapS.elems x, name: Use elems}
     - warn: {lhs: map snd (MapS.toList x), rhs: MapS.elems x, name: Use elems}
+
+# <TEST>
+# yes = Set.fromList (Map.keys x) -- Map.keysSet x
+# </TEST>
