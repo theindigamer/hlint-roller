@@ -1,4 +1,9 @@
 - package:
+    name: base
+    modules:
+    - import Prelude
+
+- package:
     name: containers
     modules:
     - import qualified Data.Foldable as F
@@ -13,6 +18,7 @@
     - package base
     - package containers
     rules:
+    - warn: {lhs: concat (map f x), rhs: concatMap f x}
     - warn: {lhs: F.foldl' Map.union Map.empty, rhs: Map.unions, name: Use unions}
     - warn: {lhs: Set.fromList (Map.keys m), rhs: Map.keysSet m, name: Use keysSet}
     - warn: {lhs: fmap fst (Map.toList x), rhs: Map.keys x, name: Use keys}
@@ -32,5 +38,11 @@
     - warn: {lhs: map snd (MapS.toList x), rhs: MapS.elems x, name: Use elems}
 
 # <TEST>
-# yes = Set.fromList (Map.keys x) -- Map.keysSet x
+# import qualified Data.Map as Map \
+# import qualified Data.Set as Set \
+# yes = Set.fromList (Map.keys m) -- Map.keysSet m
+# import qualified Data.Map as Map \
+# yes = fmap fst . Map.toList -- Map.keys
+# import qualified Data.Map as Map \
+# yes = fst <$> Map.toList z -- Map.keys z
 # </TEST>
