@@ -2,12 +2,13 @@ name:                hlint-roller
 version:             0.1.0.0
 github:              "githubuser/hlint-roller"
 license:             BSD3
+license-file:        License
 author:              "Author name here"
 maintainer:          "example@example.com"
 copyright:           "2018 Author name here"
 
 extra-source-files:
-- README.md
+- Readme.md
 - ChangeLog.md
 
 # Metadata used when publishing your package
@@ -20,7 +21,7 @@ extra-source-files:
 description:         Please see the README on GitHub at <https://github.com/githubuser/hlint-roller#readme>
 
 dependencies:
-- base >= 4.7 && < 5
+- base >= 4.11 && < 5
 - containers
 - optparse-applicative
 - parser-combinators
